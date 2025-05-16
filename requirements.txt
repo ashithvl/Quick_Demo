@@ -1,0 +1,17 @@
+streamlit
+pdfplumber
+python-dotenv
+chromadb
+matplotlib
+numpy
+
+langgraph
+langgraph-sdk
+langgraph-cli
+
+langchain-community
+langchain-core
+langchain-google-genai
+langchain-openai
+langchain-groq
+langchain-ollama
