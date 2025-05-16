@@ -1,6 +1,7 @@
 import os
 from langchain_community.document_loaders import PDFPlumberLoader
 from langchain_community.vectorstores import Chroma
+from langchain.vectorstores import FAISS
 from langchain_core.documents import Document
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -51,12 +52,16 @@ class ReportAnalyzer:
         os.makedirs("./chroma_db", exist_ok=True)
         documents = [Document(page_content=chunk, metadata={
                               "chunk_id": i}) for i, chunk in enumerate(chunks)]
-        vectorstore = Chroma.from_documents(
-            documents=documents,
-            collection_name=f"report_{thread_id}",
-            embedding=self.embeddings,
-            persist_directory="./chroma_db"
-        )
+        # vectorstore = Chroma.from_documents(
+        #     documents=documents,
+        #     collection_name=f"report_{thread_id}",
+        #     embedding=self.embeddings,
+        #     persist_directory="./chroma_db"
+        # )
+        vectorstore = FAISS.from_documents(
+           documents,
+           embedding=self.embeddings
+       )
         return vectorstore
 
     def generate_summary(self, vectorstore):
