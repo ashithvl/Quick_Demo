@@ -21,7 +21,7 @@ def main():
 
     # Upload screen
     if st.session_state.screen == "upload":
-        st.title("📄 Upload Sustainability Report")
+        st.title("📄 Upload Sustainability Report to Caly")
         uploaded_file = st.file_uploader("Upload PDF", type="pdf")
         if uploaded_file:
             with st.spinner("Processing PDF..."):
@@ -51,7 +51,7 @@ def main():
 
     # Chat screen
     elif st.session_state.screen == "chat":
-        st.title("💬 Sustainability Chat")
+        st.title("💬 Chat with Caly")
 
         # Chat history rendering
         for sender, message, timestamp in st.session_state.chat_history:
