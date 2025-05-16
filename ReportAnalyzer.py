@@ -6,6 +6,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_groq import ChatGroq
 from langchain_ollama import OllamaEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from dotenv import load_dotenv
 import matplotlib.pyplot as plt
@@ -20,7 +21,12 @@ class ReportAnalyzer:
             groq_api_key=os.getenv("GROQ_API_KEY", ""),
             model_name="meta-llama/llama-4-maverick-17b-128e-instruct"
         )
-        self.embeddings = OllamaEmbeddings(model="nomic-embed-text")
+        # self.embeddings = OllamaEmbeddings(model="nomic-embed-text")
+        self.embeddings = OpenAIEmbeddings(
+            openai_api_key=os.getenv("OPENAI_API_KEY", ""),
+            model="text-embedding-3-large",
+            chunk_size=1
+        )
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=2000,
             chunk_overlap=200
