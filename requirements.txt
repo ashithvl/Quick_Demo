@@ -4,6 +4,7 @@ python-dotenv
 chromadb
 matplotlib
 numpy
+protobuf==3.20.3
 
 langgraph
 langgraph-sdk
